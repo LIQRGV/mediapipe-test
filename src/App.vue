@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 import CameraView from './components/CameraView.vue'
 import AccessorySelector from './components/AccessorySelector.vue'
 import { AccessoryType } from './types/accessories'

@@ -5,7 +5,7 @@ interface Props {
   selected: AccessoryType
 }
 
-const props = defineProps<Props>()
+defineProps<Props>() // needed later to check whether the accesory is selected or not
 const emit = defineEmits<{
   change: [accessory: AccessoryType]
 }>()
