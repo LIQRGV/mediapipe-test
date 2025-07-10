@@ -6,8 +6,8 @@ import vue from '@vitejs/plugin-vue'
 function mediapipe_workaround() {
   return {
     name: 'mediapipe_workaround',
-    load(id) {
-      const MEDIAPIPE_EXPORT_NAMES = {
+    load(id: string) {
+      const MEDIAPIPE_EXPORT_NAMES: Record<string, string[]> = {
         'pose.js': [
           'POSE_LANDMARKS', 
           'POSE_CONNECTIONS', 
@@ -46,22 +46,22 @@ function mediapipe_workaround() {
         ],
       }
 
-      let fileName = path.basename(id);
+      let fileName = path.basename(id)
       if (!(fileName in MEDIAPIPE_EXPORT_NAMES)) return null
-      let code = fs.readFileSync(id, 'utf-8');
+      let code = fs.readFileSync(id, 'utf-8')
       for (const name of MEDIAPIPE_EXPORT_NAMES[fileName]) {
-        code += `exports.${name} = ${name};`;
+        code += `exports.${name} = ${name};`
       }
-      return {code};
+      return {code}
     },
-  };
+  }
 }
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/mediapipe-test/",
   plugins: [
+    mediapipe_workaround(),
     vue(),
-    mediapipe_workaround()
   ],
 })
+
