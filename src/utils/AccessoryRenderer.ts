@@ -85,29 +85,31 @@ export class AccessoryRenderer {
   private drawNecklace(centerX: number, centerY: number, width: number, ctx: CanvasRenderingContext2D): void {
     const beadCount = 15
     const necklaceHeight = 40
-    
+
     // Draw necklace chain as connected beads
     ctx.strokeStyle = '#C0C0C0' // Silver color
     ctx.lineWidth = 3
-    
+
     for (let i = 0; i < beadCount; i++) {
       const angle = (i / (beadCount - 1)) * Math.PI - Math.PI / 2
-      const x = centerX + Math.cos(angle) * (width / 2)
-      const y = centerY + Math.sin(angle) * necklaceHeight + necklaceHeight
-      
+      const x = centerY + Math.sin(angle) * necklaceHeight + necklaceHeight
+      const y = centerX + Math.cos(angle) * (width / 2)
+
+      console.log(angle, x, y)
+
       // Draw bead
       ctx.beginPath()
       ctx.arc(x, y, 4, 0, 2 * Math.PI)
       ctx.fillStyle = '#FFD700' // Gold beads
       ctx.fill()
       ctx.stroke()
-      
+
       // Connect beads with chain
       if (i > 0) {
         const prevAngle = ((i - 1) / (beadCount - 1)) * Math.PI - Math.PI / 2
         const prevX = centerX + Math.cos(prevAngle) * (width / 2)
         const prevY = centerY + Math.sin(prevAngle) * necklaceHeight + necklaceHeight
-        
+
         ctx.beginPath()
         ctx.moveTo(prevX, prevY)
         ctx.lineTo(x, y)
@@ -116,9 +118,9 @@ export class AccessoryRenderer {
     }
 
     // Draw pendant in the center
-    const pendantX = centerX
-    const pendantY = centerY + necklaceHeight + 20
-    
+    const pendantX = centerX + necklaceHeight + 20
+    const pendantY = centerY
+
     ctx.beginPath()
     ctx.moveTo(pendantX, pendantY - 10)
     ctx.lineTo(pendantX - 8, pendantY + 5)
