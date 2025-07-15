@@ -92,8 +92,8 @@ export class AccessoryRenderer {
 
     for (let i = 0; i < beadCount; i++) {
       const angle = (i / (beadCount - 1)) * Math.PI - Math.PI / 2
-      const x = centerY + Math.sin(angle) * necklaceHeight + necklaceHeight
-      const y = centerX + Math.cos(angle) * (width / 2)
+      const x = centerX + Math.sin(angle) * necklaceHeight + necklaceHeight
+      const y = centerY + Math.cos(angle) * (width / 2)
 
       console.log(angle, x, y)
 
@@ -107,8 +107,8 @@ export class AccessoryRenderer {
       // Connect beads with chain
       if (i > 0) {
         const prevAngle = ((i - 1) / (beadCount - 1)) * Math.PI - Math.PI / 2
-        const prevX = centerX + Math.cos(prevAngle) * (width / 2)
-        const prevY = centerY + Math.sin(prevAngle) * necklaceHeight + necklaceHeight
+        const prevX = centerX + Math.sin(prevAngle) * necklaceHeight + necklaceHeight
+        const prevY = centerY + Math.cos(prevAngle) * (width / 2)
 
         ctx.beginPath()
         ctx.moveTo(prevX, prevY)
